@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@keyframes music-bar {
+  0%, 100% { height: 2px; }
+  50% { height: 12px; }
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --bg: #0A0B0E;
+  --surface: #16181D;
+  --surface-light: #23262D;
+  --accent: #4CC9F0;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B0B3B8;
+  --border: #2D3139;
+  --green: #40C057;
+  --red: #FA5252;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.main-gradient {
+  background: linear-gradient(180deg, #1A1D24 0%, #0A0B0E 40%);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.song-row-grid {
+  display: grid;
+  grid-template-columns: 40px 1fr 120px 80px 40px;
+  align-items: center;
+}
+
+.topic-card {
+  background: var(--surface);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.topic-card:hover { border-color: var(--accent); }
+
+.topic-card.physics { border-top: 4px solid #7209B7; }
+.topic-card.chem { border-top: 4px solid #F72585; }
+.topic-card.bio { border-top: 4px solid #4CC9F0; }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: var(--surface-light);
+  border-radius: 20px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+}
+
+.lyrics-box {
+  background: var(--surface-light);
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.science-breakdown {
+  background: rgba(76, 201, 240, 0.05);
+  border: 1px solid rgba(76, 201, 240, 0.2);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

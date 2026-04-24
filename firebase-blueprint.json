@@ -1,0 +1,94 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string", "description": "User's display name" },
+        "email": { "type": "string", "description": "User's email address" },
+        "photoURL": { "type": "string", "description": "User's profile picture URL" },
+        "bio": { "type": "string", "description": "Short user bio" },
+        "followerCount": { "type": "number", "description": "Number of followers" },
+        "followingCount": { "type": "number", "description": "Number of users followed" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["displayName", "email"]
+    },
+    "Song": {
+      "title": "Song",
+      "description": "Information about a STEM song",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Song title" },
+        "artistId": { "type": "string", "description": "UID of the user who published it" },
+        "artistName": { "type": "string", "description": "Name of the artist" },
+        "audioUrl": { "type": "string", "description": "URL to the audio file" },
+        "lyrics": { "type": "string", "description": "Song lyrics" },
+        "breakdown": { "type": "string", "description": "Scientific breakdown of the lyrics" },
+        "topic": { "type": "string", "description": "STEM topic (e.g., Biology, Physics, Chemistry)" },
+        "likesCount": { "type": "number", "description": "Total number of likes" },
+        "dislikesCount": { "type": "number", "description": "Total number of dislikes" },
+        "streamsCount": { "type": "number", "description": "Total streams" },
+        "coverUrl": { "type": "string", "description": "Song cover image URL" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "artistId", "audioUrl", "topic"]
+    },
+    "Topic": {
+      "title": "Topic",
+      "description": "STEM topics/categories",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "iconName": { "type": "string", "description": "Lucide icon name" },
+        "color": { "type": "string", "description": "Tailwind color class" }
+      },
+      "required": ["name"]
+    },
+    "Playlist": {
+      "title": "Playlist",
+      "description": "User created playlists",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "songIds": { "type": "array", "items": { "type": "string" } },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "ownerId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Profiles of the users"
+    },
+    "/songs/{songId}": {
+      "schema": "Song",
+      "description": "Published STEM songs"
+    },
+    "/songs/{songId}/activity/{userId}": {
+      "schema": "object",
+      "description": "User interactions like like/dislike"
+    },
+    "/topics/{topicId}": {
+      "schema": "Topic",
+      "description": "List of STEM topics"
+    },
+    "/playlists/{playlistId}": {
+      "schema": "Playlist",
+      "description": "User playlists"
+    },
+    "/users/{userId}/followers/{followerId}": {
+      "schema": "object",
+      "description": "Followers of a user"
+    },
+    "/users/{userId}/following/{followingId}": {
+      "schema": "object",
+      "description": "Users a user is following"
+    }
+  }
+}
